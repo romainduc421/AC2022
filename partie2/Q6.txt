@@ -1,8 +1,0 @@
-
-La complexité de ce programme dynamique est donnée par l'expression O(nUK), où n est le nombre de nœuds du graphe et U et K sont respectivement la capacité du réservoir et le nombre maximal d'arrêts pour remplir le réservoir.
-
-La fonction coût C[u, q, g] dépend de trois variables : le nœud u, le nombre q d'arrêts pour remplir le réservoir et la quantité g d'essence dans le réservoir. Pour chaque nœud u et chaque valeur de q et g, nous devons calculer le coût minimum du voyage pour aller de u à t en utilisant au plus q arrêts pour remplir le réservoir et en arrivant à u avec g unités d'essence.
-
-Il y a n nœuds dans le graphe, U valeurs possibles pour la quantité d'essence dans le réservoir et K valeurs possibles pour le nombre d'arrêts pour remplir le réservoir. Nous devons donc calculer la fonction coût C[u, q, g] pour toutes les combinaisons possibles de u, q et g, soit n * U * K combinaisons.
-
-Par conséquent, la fonction de coût C a une complexité de O(nKU). Pour calculer C[u, q, g] pour tous les nœuds u, tous les arrêts possibles q et toutes les quantités possibles d'essence g, nous devons effectuer O(nKU) itérations.

@@ -1,9 +1,0 @@
-Une façon d'éviter le besoin de considérer toutes les valeurs possibles de g lorsque l'on utilise la prog. dynamique pour résoudre le problème de remplissage aux stations, est de discrétiser les valeurs que g peut prendre. Cela signifie qu'au lieu de considérer toutes les valeurs possibls de g dans l'intervalle [0, U], on considère uniquement un ensemble discret de valeurs pour g.
-
-Par exemple, on pourrait diviser la plage [0, U]  en un ensemble de N intervalles égaux, et ne considérer que les valeurs de g qui sont contenues dans ces intervalles. Cela peut permettre de réduire le nombre de valeurs possibles de g que nous devons tenir compte lorsque l'on utilise la prog. dynamique, rendant ainsi l'algorithme plus efficace.
-
-Cependant, même avec la discrétisation des valeurs de g, l'utilisation de l'état C[u, q, g] en prog. dynamique mène à un algorithme avec une complexité pseudo-polynomiale. Cela s'explique par le fait que le nombre de valeurs possibles de u, q et g demeure exponentiel en la taille de l'entrée, et la complexité en temps de l'algorithme est dépendante du nombre de ces valeurs dont il faut tenir compte.
-
-Par exemple, si nous utilisons N intervalles pour discrétiser les valeurs de g, alors le nombre de valeurs possibles de g est O(N). Le nombre de valeurs possibles de u et q est aussi exponentiel en la taille de l'entrée, ainsi le nombre total d'états dans l'algorithme de prog. dynamique est O(N 2^n), où n est la taille de l'entrée. C'est une complexité pseudo-polynomiale, car la complexité en temps de l'algorithme est dépendante à la fois de la taille de l'entrée et de la taille des entiers utilisés pour représenter l'entrée.
-
-

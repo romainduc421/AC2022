@@ -1,9 +1,0 @@
-Supposons que nous avons un programme de taille n qui utilise seulement les entiers 0 et 1. Nous souhaitons montrer que le résultat de ce programme est inférieur à 2^2^n.
-
-- Le programme est constitué de n instructions, chacune d'elle étant soit 0 soit 1. Il y a donc 2^n programmes possibles de taille n.
-
-- Chacun de ces 2^n programmes calcule un entier qui est soit 0 soit 1. Il y a donc 2^2^n résultats possibles de programmes de taille n.
-
-Le résultat d'un programme de taille n devant être un des 2^2^n résultats possibles, il s'ensuit que le résultat d'un programme de taille n est inférieur à 2^2^n.
-
-Nous pouvons en conclure que le résultat de n'importe quel programme de taille n qui utilise seulement 0 et 1 est inférieur à 2^2^n.
