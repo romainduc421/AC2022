@@ -1,0 +1,7 @@
+La fonction de coût C[u, q, g] peut être définie en utilisant l'expression de récurrence suivante :
+
+C[u, q, g] = min(C[v, q - 1, h] + d(u, v) + c(v) * (U - g)), for all v in V
+
+Cette relation de récurrence établit que le coût d'un voyage du noeud u au noeud t utilisant q arrêts pour remplir le réservoir et arriver au noeud u avec g unités d'essence est égal au coût minimum d'un trajet du noeud v au noeud t utilisant q - 1 arrêts pour remplir le réservoir et arriver au noeud v avec h unités d'essence, plus le coût de voyage de u à v et le coût de remplissage du réservoir au noeud v. Le minimum s'occupe de tous les noeuds v in V dans le graphe G.
+
+Cette relation nous permet de calculer le coût de la solution optimale au "gas-station problem" utilisant la programmation dynamique. En appliquant alternativement cette relation de récurrence, nous pouvons calculer le coût de la solution optimale à chaque noeud u et pour chaque nombre d'arrêts q et chaque quantité d'essence g. Cela nous permet de déterminer le coût minimal d'un trajet de s à t utilisant q arrêts pour remplir le réservoir et arriver au noeud t avec 0 unité d'essence.

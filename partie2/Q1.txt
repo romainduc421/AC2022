@@ -1,0 +1,11 @@
+Pour montrer que les problèmes (P1), et (P2) sont équivalents, on peut ajouter un noeud s' qui est directement relié à s. 
+Le coût de l'essence au noeud s' doit être égal au coût d'essence au noeud s, et la distance d(s', s) doit être égale à la quantité d'essence μ_s initialement dans le réservoir.
+
+Pour trouver la solution optimale au problème (P1) avec cette configuration, on peut d'abord trouver la solution optimale au problème (P2) en commençant au noeud s' avec un réservoir vide. Si la solution optimale au problème (P2) implique de faire K arrêts à des stations, alors on peut simplement soustraire K au nombre d'arrêts dans la solution optimale au problème (P1).
+
+Par exemple, supposons que la solution au problème (P2) implique d'effectuer 3 arrêts à des stations. Cela signifie qu'on a besoin de remplir le réservoir 3 fois afin d'atteindre notre destination depuis le noeud s'. Si on commence au noeud s avec μ_s unités d'essence dans le réservoir, alors on a seulement besoin de faire K - 3 = 0 arrêts aux stations-service afin d'atteindre notre destination. 
+
+D'où, on peut conclure que le nombre d'arrêts dans la solution optimale au problème (P1) est égale au nombre d'arrêts dans la solution optimale au problème (P2) moins K. Cela démontre bien que les problèmes (P1) et (P2) sont équivalents.
+
+
+

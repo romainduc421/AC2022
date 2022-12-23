@@ -1,0 +1,18 @@
+Le but de cette partie 2 est d'écrire un optimiseur pour les programmes. Par exemple, le programme suivant :
+x = 1
+w = 4
+y = x - x
+x = y * w
+peut être optimisé en : 
+x = 0
+Le problème est qu'on ne peut pas évaluer l'expression car le résultat est trop grand (cf. question précédente).
+L'idée est d'évaluer les instructions ligne par ligne et d'éliminer les opérations inutiles, mais en ne gardant qu'une valeur approchée (on dit abstraite) des nombres : lors de l'évaluation on retient, pour chaque variable, si elle vaut 0, 1 ou une valeur inconnue.
+Par exemple, après l'évaluation des deux premières lignes, on retiendra que x vaut 1 et
+que w vaut une valeur inconnue (car "4" est un nombre trop grand). Lors de l'évaluation de la ligne 3, on retiendra que y vaut 0, ce qui permettra de simplifier la dernière ligne.
+L'inconvénient est qu'on ne peut pas traiter tous les programmes. Regardons le programme suivant :
+x = 4
+w = 4
+y = w - x
+x = y * w
+On ne pourra pas optimiser le programme car on ne se rend pas compte que y vaut 0 : En effet x et w valent tous les deux "valeur inconnue" donc quand on soustrait, on obtient une valeur inconnue.
+Ecrire un simplificateur en Java. Le programme prend un fichier en entrée et renvoie un fichier simplifié.

@@ -1,0 +1,15 @@
+Pour prouver que la stratégie décrite ci-dessus est optimale pour décider de la quantité d'essence à remplir à chaque arrêt, nous pouvons utiliser une récurrence.
+
+Premièrement, considérons le cas de base où l = 1, c'est-à-dire qu'il n'y a qu'un arrêt de remplissage du réservoir. Dans ce cas, la stratégie optimale est de remplir le réservoir à l'arrêt ul juste suffisamment pour atteindre t avec un réservoir vide. C'est parce que, par définition, ul est le dernier arrêt dans la solution optimale, que nous voulons être sûrs que nous avons assez d'essence pour atteindre t sans qu'il soit nécessaire d'effectuer aucun autre arrêt.
+
+Maintenant, considérons le cas où l > 1, et supposons que la stratégie optimale pour décider de la quantité d'essence à remplir à chaque arrêt lorsqu'il y a (l - 1) arrêts est de:
+(i) remplir le réservoir à l'arrêt u(l - 1) juste suffisamment pour atteindre ul, si c(u(l - 1)) >= c(ul)
+ou de
+(ii) remplir le réservoir à l'arrêt u(l - 1) à la capacité maximale si c(u(l - 1)) < c(ul)
+
+Nous allons démontrer que cette hypothèse est valable également pour l.
+Si c(ul) < c(u(l + 1)), alors la stratégie optimale est de remplir le réservoir à l'arrêt ul à la capacité maximale. En effet, remplir le réservoir à la capacité maximale à ul coûtera moins que de le remplir à une capacité moindre et ensuite le remplir à nouveau à u(l + 1), où le prix de l'essence est plus élevé.
+
+Si c(ul) >= c(u(l + 1)), alors la stratégie optimale est de remplir le réservoir à l'arrêt ul juste suffisamment pour atteindre u(l + 1). En effet, remplir le réservoir à une capacité moindre à l'arrêt ul coûtera moins que de le remplir à la capacité maximale, et nous aurons toujours assez d'essence pour atteindre u(l + 1).
+
+Par conséquent, par le principe de récurrence, nous avons montré que la stratégie décrite ci-dessus est optimale pour décider de la quantité d'essence à remplir à chaque arrêt du trajet.

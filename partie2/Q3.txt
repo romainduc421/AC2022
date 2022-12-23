@@ -1,0 +1,15 @@
+Pour trouver la solution au "gas-station problem" en utilisant la programmation dynamique, on peut utiliser la fonction de coût C[u, q, g] définie comme le coût minimal d'un parcours du noeud u au noeud t s'arrêtant q fois pour remplir le réservoir, sachant que l'on arrive au noeud u avec g unités d'essence (km).
+
+Pour exprimer le coût de la solution optimale en termes d'état final de l'algorithme de programmation dynamique, nous pouvons fixer les valeurs de u, q et g dans la fonction de coût C[u, q, q]. Par exemple, si nous voulons trouver la solution optimale au "gas-station problem" débutant au noeud s et s'achevant au noeud t avec 3 arrêts pour remplir le réservoir, on peut affecter les variables comme suit :
+- u = t;
+- q = 3;
+- g = 0;
+dans la fonction de coût C[u, q, g]. Cela va nous donner le coût minimal d'un trajet de s à t utilisant 3 arrêts pour remplir le réservoir, sachant que nous arrivons au noeud t avec 0 unité d'essence dans le réservoir.
+
+En variante, nous pouvons fixer les valeurs de u, q et g dans la fonction de coût pour trouver le coût de la solution optimale à différentes étapes du voyage. Par exemple, si nous voulons trouver le coût de la solution optimale au noeud u avec 2 arrêts pour remplir le réservoir, et avec g unités d'essence dans le réservoir, on peut affecter comme suit :
+- u = u;
+- q = 2;
+- g = g;
+dans la fonction C[u, q, g]. Cela va nous donner le coût minimal d'un trajet de s à t utilisant 2 arrêts pour remplir le réservoir, sachant que nous sommes actuellement au noeud u avec g unités d'essence dans le réservoir.
+
+Plus généralement, le coût de la solution optimale peut être exprimée en termes d'état final de l'algorithme de programmation dynamique par la fixation des valeurs u, q et g dans la fonction de coût C[u, q, g].
