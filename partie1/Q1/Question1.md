@@ -1,5 +1,4 @@
 ~~~
-$ javac Toto.java
-$ java Toto
+$ javac Toto.java; java Toto
 50
 ~~~

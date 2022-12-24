@@ -20,3 +20,12 @@ N = -2147483648
 Integer.MIN_VALUE - 1
 N = 2147483647
 ~~~
+
+En Python, avec le programme,
+~~~
+x=2147483647
+y=1
+x=x+y
+print(x)
+~~~
+On obtient : 2147483648, ce qui est le bon résultat

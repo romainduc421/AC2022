@@ -1,13 +1,14 @@
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
-public class Evaluateur {
+public class ProgramComparator{
 
-
-  public static String FileToString(String filename){
+	public static String FileToString(String filename){
 		try{
-			
+		
 			File file = new File(filename);
 			FileInputStream f = new FileInputStream(file);
 			byte[] data = new byte[(int) file.length()];
@@ -17,38 +18,51 @@ public class Evaluateur {
 			return new String(data, "UTF-8");
 		}
 		catch(Exception ex)
-    {
-      ex.printStackTrace();
-      return null;
-    }       
-  }
+		{
+			ex.printStackTrace();
+			return null;
+		}       
+	}
+	public static boolean compare(Vector<Instruction> p1, Vector<Instruction> p2){
+			int primeNumber = RandomPrime.randomPrime();
+			return evaluateur(p1,primeNumber) == evaluateur(p2,primeNumber);
+	}
 
-  private static int calculateMod(String op, Integer x, Integer x2, int p){
-    int res=0;
+	private static int calculateMod(String op, Integer x, Integer x2, int p){
+		int res=0;
 		if (op.equals("+"))  
-      res = (x.intValue() + x2.intValue())%p;
-    else if (op.equals("-"))  
-      res = (x.intValue() - x2.intValue())%p;
-    else if (op.equals("*"))  
-      res = multiply(x, x2, p);
+			res = (x.intValue() + x2.intValue())%p;
+		else if (op.equals("-"))  
+			res = (x.intValue() - x2.intValue())%p;
+		else if (op.equals("*"))  
+			res = multiply(x, x2, p);
 		return res;
-  }
+	}
 
-  /**
-   * evalue le programme modulo p
-   * @param program : vecteur d'instructions
-   * @param p : entier du modulo
-   * @return
-   */
-  public static int evaluateur(Vector<Instruction> program, int p) {
-    int res=0;
-    Map<String, Integer> values  = new HashMap<>();
-    for(Instruction i: program){
+	private static int multiply(int x, int y, int p) {
+		int result = 0;
+		while (y > 0) {
+			//if y est impair, ajouter 'x' au résultat
+			if ((y & 1) == 1) result = (result + x) % p;
+			y >>= 1;
+			x = (2 * x) % p;
+		}
+		return result;
+	}
+
+	/**
+	 * evalue le programme modulo p
+	 * @param program : vecteur d'instructions
+	 * @param p : entier du modulo
+	 * @return
+	 */
+	public static int evaluateur(Vector<Instruction> program, int p) {
+		int res=0;
+		Map<String, Integer> values  = new HashMap<>();
+		for(Instruction i: program){
 			if (i instanceof Assign){
 				Assign a = (Assign) i;
-				//System.out.println("La variable " + a.lhs + " reçoit la valeur " + a.rhs);
 				values.put(a.lhs, (int)((Entier)a.rhs).x);
-				//System.out.println(values)
 			}
 			else{		
 				AssignOperator a = (AssignOperator) i;
@@ -85,51 +99,22 @@ public class Evaluateur {
 						}
 					}
 				}
-				
 				res = values.get(a.lhs);
-      }
-    }
-    return res;
-  }
+			}
+		}
+		return res;
+	}
 
-  // fonction d'aide dans le sujet
-  /**
-   * Compute (x*y) % p
-   * @param x premiere operande
-   * @param y deuxieme operande
-   * @param p entier du modulo
-   * @return
-   */
-  private static int multiply(int x, int y, int p) {
-    int result = 0;
-    while (y > 0) {
-      //if y est impair, ajouter 'x' au résultat
-      if ((y & 1) == 1) result = (result + x) % p;
-      y >>= 1;
-      x = (2 * x) % p;
-    }
-    return result;
-  }
+	public static void main(String[] args){
+		if(args.length != 2){
+			System.err.print("Erreur usage :\n\tProgramComparator <prgm1> <prgm2>");
+			System.exit(-1);
+		}
 
-  public static void main(String[] args){
-    if(args.length != 2 && args[1].length() == 1 && args[1].matches("[0-9]*")){
-      System.err.println("Erreur usage : \n\tjava Evaluateur <programme> <nombre-premier>");
-      System.exit(-1);
-    }
-    Vector<Instruction> x = Parser.parse(FileToString(args[0]));
+		Vector<Instruction> x1 = Parser.parse(FileToString(args[0]));
+		Vector<Instruction> x2 = Parser.parse(FileToString(args[1]));
 
+		System.out.println(ProgramComparator.compare(x1, x2));
 
-    int p = Integer.parseInt(args[1]);
-    int res = evaluateur(x, p);
-    System.out.println(res);
-    /*
-    prog :
-    1 car (23170+23171)*46341 mod(7) = 2147488281 mod(7) = 1
-    prog1 : 
-    3 car 3*4+5 mod 7 = 17 mod 7 = 3
-    prog2 :
-    6 car (4+46341)*4 mod 7 = 185380 mod 7 = 6
-    */
-  }
+	}
 }
-
