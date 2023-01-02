@@ -2,6 +2,8 @@ import java.io.*;
 import java.util.*;
 
 public class ProgramOptimizer {
+	
+	public static HashMap<String, Integer> variables;
 	public static void main(String[] args) {
 		if(args.length != 2){
 			System.err.println("Usage : \n\t java ProgramOptimizer <inputFile> <outputFile>");
@@ -10,7 +12,7 @@ public class ProgramOptimizer {
 				// Lecture du fichier d'entrée
 				BufferedReader reader = new BufferedReader(new FileReader(args[0]));
 				String ligne, var1 = "";
-				HashMap<String, Integer> variables = new HashMap<>(); // Dictionnaire des variables et de leurs valeurs abstraites
+				variables = new HashMap<>(); // Dictionnaire des variables et de leurs valeurs abstraites
 				while ((ligne = reader.readLine()) != null) {
 					String[] parts = ligne.split(" = "); // Séparation de la ligne en mots
 					String var = parts[0]; // Nom de la variable à gauche de l'égalité
@@ -26,13 +28,23 @@ public class ProgramOptimizer {
 				FileWriter writer = new FileWriter(args[1]);
 				
 				if(last_value != 2){
+					writer.write("Valeur variables à la fin :\n");
+					for(String var : variables.keySet()){
+						writer.write(var+" = "+variables.get(var)+"\n");
+					}
+					writer.write("Optimisation :\n\t");
 					writer.write(var1+" = "+last_value);
 				}
 				else{
+					writer.write("Valeur variables à la fin :\n");
+					for(String var : variables.keySet()){
+						writer.write(var+" = "+variables.get(var)+"\n");
+					}
 					writer.write("Pas d'optimisation : \n\tpour "+var1+" : valeur indéterminée");
 				}
 
-				writer.close();
+				writer.close();	
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -109,6 +121,6 @@ public class ProgramOptimizer {
 
 		
 		return 2;
-	}    
+	}
 }
 
